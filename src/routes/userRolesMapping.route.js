@@ -10,7 +10,7 @@ const { createUserRolesMappingSchema, updateUserRolesMappingSchema } = require('
 router.get('/', auth(), awaitHandlerFactory(userRolesMappingController.getAllUserRolesMappings)); // localhost:3000/api/v1/countries
 router.get('/id/:id', auth(), awaitHandlerFactory(userRolesMappingController.getUserRolesMappingById)); // localhost:3000/api/v1/countries/id/1
 router.post('/', createUserRolesMappingSchema, awaitHandlerFactory(userRolesMappingController.createUserRolesMapping)); // localhost:3000/api/v1/countries
-router.patch('/id/:id', auth(Role.Admin), updateUserRolesMappingSchema, awaitHandlerFactory(userRolesMappingController.updateUserRolesMapping)); // localhost:3000/api/v1/countries/id/1 , using patch for partial update
-router.delete('/id/:id', auth(Role.Admin), awaitHandlerFactory(userRolesMappingController.deleteUserRolesMapping)); // localhost:3000/api/v1/countries/id/1
+router.patch('/id/:id', auth(), updateUserRolesMappingSchema, awaitHandlerFactory(userRolesMappingController.updateUserRolesMapping)); // localhost:3000/api/v1/countries/id/1 , using patch for partial update
+router.delete('/id/:id', auth(), awaitHandlerFactory(userRolesMappingController.deleteUserRolesMapping)); // localhost:3000/api/v1/countries/id/1
 
 module.exports = router;

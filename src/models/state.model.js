@@ -7,11 +7,14 @@ class StateModel {
 
     find = async (params = {}) => {
         // let sql = `SELECT * FROM ${this.tableName}`;
-        const sql = `SELECT *,
-            ${this.tableNameCountry}.countryName 
+        const sql = `SELECT ${this.tableName}.*,
+            ${this.tableNameCountry}.countryName
             FROM ${this.tableName}
             INNER JOIN ${this.tableNameCountry} 
-            ON state.countryId=${this.tableNameCountry}.id`
+            ON ${this.tableName}.countryId=${this.tableNameCountry}.id`
+
+
+        console.log("sql>>>", sql)
 
         if (!Object.keys(params).length) {
             return await query(sql);

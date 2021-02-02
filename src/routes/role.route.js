@@ -10,7 +10,7 @@ const { createRoleSchema, updateRoleSchema } = require('../middleware/validators
 router.get('/', auth(), awaitHandlerFactory(roleController.getAllRoles)); // localhost:3000/api/v1/countries
 router.get('/id/:id', auth(), awaitHandlerFactory(roleController.getRoleById)); // localhost:3000/api/v1/countries/id/1
 router.post('/', createRoleSchema, awaitHandlerFactory(roleController.createRole)); // localhost:3000/api/v1/countries
-router.patch('/id/:id', auth(Role.Admin), updateRoleSchema, awaitHandlerFactory(roleController.updateRole)); // localhost:3000/api/v1/countries/id/1 , using patch for partial update
-router.delete('/id/:id', auth(Role.Admin), awaitHandlerFactory(roleController.deleteRole)); // localhost:3000/api/v1/countries/id/1
+router.patch('/id/:id', auth(), updateRoleSchema, awaitHandlerFactory(roleController.updateRole)); // localhost:3000/api/v1/countries/id/1 , using patch for partial update
+router.delete('/id/:id', auth(), awaitHandlerFactory(roleController.deleteRole)); // localhost:3000/api/v1/countries/id/1
 
 module.exports = router;

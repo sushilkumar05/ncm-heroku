@@ -2,15 +2,18 @@ const query = require('../db/db-connection');
 const { multipleColumnSet } = require('../utils/common.utils')
 
 class RoleDetailsModel {
+    
     tableName = 'roleDetails';
     tableNameRoleEntity = 'roleEntity';
-    find = async (params = {}) => {
-        // let sql = `SELECT * FROM ${this.tableName}`;
-        const sql = `SELECT *,
-        ${this.tableNameRoleEntity}.entityName
+
+    find = async (params) => {
+        const sql = `SELECT ${this.tableName}.*,
+        ${this.tableNameRoleEntity}.entityName,
+        ${this.tableNameRoleEntity}.id as roleEntityId
         FROM ${this.tableName}
-        INNER JOIN ${this.tableNameRoleEntity} 
-        ON ${this.tableName}.roleEntityId=${this.tableNameRoleEntity}.id`
+        RIGHT JOIN ${this.tableNameRoleEntity} 
+        ON ${this.tableName}.roleEntityId=${this.tableNameRoleEntity}.id
+        AND ${this.tableName}.roleId = ${params.id}`
 
         if (!Object.keys(params).length) {
             return await query(sql);
@@ -36,12 +39,12 @@ class RoleDetailsModel {
         return result[0];
     }
 
-    create = async ({ roleEntityId, entityRead, entityAdd, entityUpdate, entityPrint, entityExport, entityDelete }) => {
+    create = async ({ roleId, roleEntityId, entityRead, entityAdd, entityUpdate, entityPrint, entityExport, entityDelete }) => {
         const sql = `INSERT INTO ${this.tableName}
-        (roleEntityId,entityRead,entityAdd,entityUpdate,entityPrint,entityExport,entityDelete) VALUES (?,?,?,?,?,?,?)`;
+        (roleId,roleEntityId,entityRead,entityAdd,entityUpdate,entityPrint,entityExport,entityDelete) VALUES (?,?,?,?,?,?,?,?)`;
 
         console.log("Create Quesry>>>>>> ", sql)
-        const result = await query(sql, [roleEntityId, entityRead, entityAdd, entityUpdate, entityPrint, entityExport, entityDelete]);
+        const result = await query(sql, [roleId, roleEntityId, entityRead, entityAdd, entityUpdate, entityPrint, entityExport, entityDelete]);
         const affectedRows = result ? result.affectedRows : 0;
 
         return affectedRows;

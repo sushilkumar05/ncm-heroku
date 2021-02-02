@@ -6,7 +6,7 @@ class OrgDevicesModel {
     tableNameDevices = 'devices'
     find = async (params = {}) => {
         // let sql = `SELECT * FROM ${this.tableName}`;
-        const sql = `SELECT *,
+        const sql = `SELECT ${this.tableName}.*,
         ${this.tableNameDevices}.deviceModel as model
         FROM ${this.tableName}
         INNER JOIN ${this.tableNameDevices} 

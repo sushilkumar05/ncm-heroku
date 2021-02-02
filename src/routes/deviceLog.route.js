@@ -10,7 +10,7 @@ const { createDeviceLogSchema, updateDeviceLogSchema } = require('../middleware/
 router.get('/', auth(), awaitHandlerFactory(deviceLogController.getAllDeviceLogs)); // localhost:3000/api/v1/countries
 router.get('/id/:id', auth(), awaitHandlerFactory(deviceLogController.getDeviceLogById)); // localhost:3000/api/v1/countries/id/1
 router.post('/', createDeviceLogSchema, awaitHandlerFactory(deviceLogController.createDeviceLog)); // localhost:3000/api/v1/countries
-router.patch('/id/:id', auth(Role.Admin), updateDeviceLogSchema, awaitHandlerFactory(deviceLogController.updateDeviceLog)); // localhost:3000/api/v1/countries/id/1 , using patch for partial update
-router.delete('/id/:id', auth(Role.Admin), awaitHandlerFactory(deviceLogController.deleteDeviceLog)); // localhost:3000/api/v1/countries/id/1
+router.patch('/id/:id', auth(), updateDeviceLogSchema, awaitHandlerFactory(deviceLogController.updateDeviceLog)); // localhost:3000/api/v1/countries/id/1 , using patch for partial update
+router.delete('/id/:id', auth(), awaitHandlerFactory(deviceLogController.deleteDeviceLog)); // localhost:3000/api/v1/countries/id/1
 
 module.exports = router;

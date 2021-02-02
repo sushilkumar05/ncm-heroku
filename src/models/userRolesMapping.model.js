@@ -6,7 +6,7 @@ class UserRolesMappingModel {
     tableNameOrganization = 'organization'
     find = async (params = {}) => {
         // let sql = `SELECT * FROM ${this.tableName}`;
-        const sql = `SELECT *,
+        const sql = `SELECT ${this.tableName}.*,
         ${this.tableNameOrganization}.orgName
         FROM ${this.tableName}
         INNER JOIN ${this.tableNameOrganization} 

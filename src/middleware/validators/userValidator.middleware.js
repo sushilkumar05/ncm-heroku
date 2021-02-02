@@ -28,10 +28,13 @@ exports.createUserSchema = [
         .isEmail()
         .withMessage('Must be a valid email')
         .normalizeEmail(),
-    check('role')
-        .optional()
-        .isIn([Role.Admin, Role.SuperUser])
-        .withMessage('Invalid Role type'),
+    // check('role')
+    //     .exists()
+    //     .withMessage('Role is required'),
+        // .optional()
+        // .withMessage('Invalid Role type'),
+        // .isIn([Role.Admin, Role.SuperUser])
+
     check('password')
         .exists()
         .withMessage('Password is required')
@@ -43,7 +46,7 @@ exports.createUserSchema = [
     check('confirm_password')
         .exists()
         .custom((value, { req }) => value === req.body.password)
-        .withMessage('confirm_password field must have the same value as the password field')   
+        .withMessage('confirm_password field must have the same value as the password field')
 ];
 
 exports.updateUserSchema = [
@@ -68,10 +71,10 @@ exports.updateUserSchema = [
         .isEmail()
         .withMessage('Must be a valid email')
         .normalizeEmail(),
-    check('role')
-        .optional()
-        .isIn([Role.Admin, Role.SuperUser])
-        .withMessage('Invalid Role type'),
+    // check('role')
+    //     .optional()
+    //     .isIn([Role.Admin, Role.SuperUser])
+    //     .withMessage('Invalid Role type'),
     check('password')
         .optional()
         .notEmpty()

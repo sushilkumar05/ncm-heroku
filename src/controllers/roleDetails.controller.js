@@ -25,12 +25,12 @@ class RoleDetailsController {
     }
 
     getRoleDetailsById = async (req, res, next) => {
-        const roleDetails = await RoleDetailsModel.findOne({ id: req.params.id });
+        const roleDetails = await RoleDetailsModel.find({ id: req.params.id });
         if (!roleDetails) {
             return res.send({
                 success: false,
                 message: 'Record not found',
-                ResponsePacket: {},
+                ResponsePacket: [],
             })
         }
 

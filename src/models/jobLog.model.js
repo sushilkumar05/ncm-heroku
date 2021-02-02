@@ -6,7 +6,7 @@ class JobLogModel {
     tableNameJobMaster = 'jobMaster'
     find = async (params = {}) => {
         // let sql = `SELECT * FROM ${this.tableName}`;
-        const sql = `SELECT *,
+        const sql = `SELECT ${this.tableName}.*,
         ${this.tableNameJobMaster}.jobName
         FROM ${this.tableName}
         INNER JOIN ${this.tableNameJobMaster} 

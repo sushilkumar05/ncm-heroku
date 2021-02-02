@@ -24,6 +24,8 @@ const orgDevicesRouter = require('./routes/orgDevices.route')
 const reportsRouter = require('./routes/reports.route')
 const roleDetailsRouter = require('./routes/roleDetails.route')
 const userRolesMappingRouter = require('./routes/userRolesMapping.route')
+const dashboardRouter = require('./routes/dashboard.route')
+
 
 const app = express()
 
@@ -57,6 +59,7 @@ app.use(`/api/v1/orgdevices`, orgDevicesRouter)
 app.use(`/api/v1/reports`, reportsRouter)
 app.use(`/api/v1/roledetails`, roleDetailsRouter)
 app.use(`/api/v1/userrolesmapping`, userRolesMappingRouter)
+app.use(`/api/v1/dashboard`, dashboardRouter)
 
 app.use(express.static(path.join(__dirname, 'build')));
 

@@ -6,7 +6,7 @@ class DeviceModel {
     tableNameVendor = 'vendor'
     find = async (params = {}) => {
         // let sql = `SELECT * FROM ${this.tableName}`;
-        const sql = `SELECT *,
+        const sql = `SELECT ${this.tableName}.*,
         ${this.tableNameVendor}.vendorName 
         FROM ${this.tableName}
         INNER JOIN ${this.tableNameVendor} 
