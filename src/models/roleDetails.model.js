@@ -15,12 +15,15 @@ class RoleDetailsModel {
         ON ${this.tableName}.roleEntityId=${this.tableNameRoleEntity}.id
         AND ${this.tableName}.roleId = ${params.id}`
 
+        console.log("sql>>>>:", sql)
+
+
         if (!Object.keys(params).length) {
             return await query(sql);
         }
 
         const { columnSet, values } = multipleColumnSet(params)
-        console.log("columnSet:", columnSet)
+        // console.log("columnSet:", columnSet)
 
         // sql += ` WHERE ${columnSet}`;
         // return await query(sql, [...values]);
